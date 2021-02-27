@@ -81,4 +81,22 @@ var someOver18 = numbers.some(myFunction);
 function myFunction(value, index, array) {
   return value > 18;
 }
-console.log(someOver18)
+console.log(someOver18);
+console.log("---------------------");
+const obj = {};
+Object.defineProperty(obj, "a", {
+  set(val) {
+    console.log(`开始设置新值:${val}`);
+  },
+  get() {
+    console.log(`开始读取属性`);
+    return 1;
+  },
+  // writable: true,
+});
+obj.a = 2;
+obj.a;
+console.log("---------------------");
+console.log(new Date().toString())
+const time = Date.parse(new Date().toString()) / 1000 / 60 / 60;
+console.log(time);
