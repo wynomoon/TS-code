@@ -97,6 +97,35 @@ Object.defineProperty(obj, "a", {
 obj.a = 2;
 obj.a;
 console.log("---------------------");
-console.log(new Date().toString())
+console.log(new Date().toString());
 const time = Date.parse(new Date().toString()) / 1000 / 60 / 60;
 console.log(time);
+// 异步操作
+function timeout(ms) {
+  return new Promise((resolve, reject) => {
+    setTimeout(resolve, ms, "done");
+  });
+}
+timeout(1000).then((value) => {
+  console.log(value);
+});
+console.log("---------------------");
+var o = {};
+Object.defineProperty(o, "a", { value: 1, enumerable: true });
+Object.defineProperty(o, "b", { value: 2, enumerable: false });
+Object.defineProperty(o, "c", { value: 3 }); // enumerable 默认为 false
+o.d = 4; // 如果使用直接赋值的方式创建对象的属性，则 enumerable 为 true
+Object.defineProperty(o, Symbol.for("e"), {
+  value: 5,
+  enumerable: true,
+});
+Object.defineProperty(o, Symbol.for("f"), {
+  value: 6,
+  enumerable: false,
+});
+
+for (var i in o) {
+  console.log(i);
+}
+console.log(Object.keys(o));
+console.log("---------------------");
