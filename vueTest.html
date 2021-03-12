@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>练习代码</title>
+    <style type="text/css"></style>
+  </head>
+  <body>
+    <input type="text" id="text" />
+    <div id="sp"></div>
+    <canvas id="canvas"></canvas>
+  </body>
+  <script>
+    const txt = document.getElementById("text");
+    const sp = document.getElementById("sp");
+    obj = {};
+    Object.defineProperty(obj, "msg", {
+      set(newVal) {
+        txt.value = newVal;
+        sp.innerText = newVal;
+      },
+    });
+    txt.addEventListener("keyup", function (event) {
+      obj.msg = event.target.value;
+    });
+    (function draw() {
+      var canvas = document.getElementById("canvas");
+      if (canvas.getContext) {
+        var ctx = canvas.getContext("2d");
+        ctx.lineWidth = 5;
+        ctx.beginPath();
+        ctx.lineCap = "round";
+        ctx.moveTo(75, 40);
+        ctx.bezierCurveTo(75, 37, 70, 25, 50, 25);
+        ctx.bezierCurveTo(20, 25, 20, 62.5, 20, 62.5);
+        ctx.bezierCurveTo(20, 80, 40, 102, 75, 120);
+        ctx.bezierCurveTo(110, 102, 130, 80, 130, 62.5);
+        ctx.bezierCurveTo(130, 62.5, 130, 25, 100, 25);
+        ctx.bezierCurveTo(85, 25, 75, 37, 75, 40);
+        var grd = ctx.createLinearGradient(20, 80, 100, 100);
+        var sgrd = ctx.createLinearGradient(10, 60, 200, 100);
+        grd.addColorStop(0, "olive");
+        grd.addColorStop(0.25, "maroon");
+        grd.addColorStop(0.5, "aqua");
+        grd.addColorStop(0.75, "fuchsia");
+        grd.addColorStop(0.25, "teal");
+        sgrd.addColorStop(0, "olive");
+        sgrd.addColorStop(0.25, "maroon");
+        sgrd.addColorStop(0.5, "aqua");
+        sgrd.addColorStop(0.75, "fuchsia");
+        sgrd.addColorStop(0.25, "teal");
+        ctx.fillStyle = grd;
+        ctx.strokeStyle = sgrd;
+        ctx.fill();
+        ctx.stroke();
+      }
+    })();
+  </script>
+</html>
