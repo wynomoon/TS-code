@@ -5,12 +5,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>练习代码</title>
-    <style type="text/css"></style>
+    <style type="text/css">
+      .demo {
+        width: 40px;
+        height: 2px;
+        background: black;
+      }
+      .demo::after {
+        content: "";
+        width: 30px;
+        background: hsla(0, 94%, 42%, 0.89);
+        position: relative;
+        right: -30px;
+        top: 50%;
+        height: 2px;
+        margin-top: -2px;
+        z-index: 2;
+      }
+      .demo::before {
+        content: "";
+        position: relative;
+        top: 3px;
+        right: 5px;
+        height: 2px;
+        width: 8px;
+        background: hsla(0, 87%, 47%, 0.966);
+        transform: rotate(45deg);
+      }
+    </style>
   </head>
   <body>
     <input type="text" id="text" />
     <div id="sp"></div>
     <canvas id="canvas"></canvas>
+    <div class="demo"></div>
   </body>
   <script>
     const txt = document.getElementById("text");

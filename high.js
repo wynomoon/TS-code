@@ -14,10 +14,10 @@ async function hello() {
   return "Hello";
 }
 hello().then(console.log);
-hello().then((value)=>console.log(value))
+hello().then((value) => console.log(value));
 //await
 async function helloWorld() {
-  return greeting = await Promise.resolve("helloWorld");
-};
+  return (greeting = await Promise.resolve("helloWorld"));
+}
 
 helloWorld().then(console.log);
