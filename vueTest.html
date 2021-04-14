@@ -32,15 +32,109 @@
         background: hsla(0, 87%, 47%, 0.966);
         transform: rotate(45deg);
       }
+
+      .topDiv {
+        margin: 30px;
+        width: 500px;
+        border: 2px solid black;
+      }
+      .topDiv:after,
+      .topDiv:before {
+        content: "";
+        display: block;
+      }
+      .topDiv:after {
+        clear: both;
+      }
+      .floatDiv {
+        width: 100px;
+        height: 100px;
+        border: 2px solid red;
+        color: red;
+        margin: 4px;
+        float: left;
+      }
+      .bottomDiv {
+        margin: 4px;
+        width: 500px;
+        height: 100px;
+        margin: 5px 0;
+        border: 2px solid black;
+      }
+      .textDiv {
+        /* clear: both; */
+        margin: 4px;
+        color: blue;
+        border: 2px solid blue;
+      }
+      .svgAnimate {
+        display: block;
+      }
+      img {
+        width: 60px;
+        height: 60px;
+        -webkit-filter: sepia(100%) invert(100%); /* Chrome, Safari, Opera */
+        filter: sepia(100%) invert(100%);
+      }
     </style>
   </head>
   <body>
+    <!-- 数据双向绑定 -->
     <input type="text" id="text" />
     <div id="sp"></div>
+    <!-- 画布 -->
     <canvas id="canvas"></canvas>
+    <!-- 伪元素 -->
     <div class="demo"></div>
+    <!-- 清除浮动 -->
+    <div class="topDiv clearfix">
+      <div class="floatDiv">float left</div>
+      <div class="textDiv">...textDiv</div>
+    </div>
+    <div class="bottomDiv">...bottomDiv</div>
+    <!-- svg动画 -->
+    <svg width="500px" height="600px" class="svgAnimate">
+      <rect x="0" y="0" width="100" height="100" fill="#feac5e">
+        <animate
+          attributeName="x"
+          from="0"
+          to="400"
+          dur="5s"
+          repeatCount="indefinite"
+        />
+        <animate attributeName="y" to="200" dur="5s" repeatCount="indefinite" />
+        <animate
+          attributeName="width"
+          to="30"
+          dur="5s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="height"
+          to="50"
+          dur="5s"
+          repeatCount="indefinite"
+        />
+        <animateTransform
+          attributeName="transform"
+          type="rotate"
+          begin="0s"
+          dur="5s"
+          from="0 200 100"
+          to="360 400 200"
+          repeatCount="indefinite"
+        />
+      </rect>
+    </svg>
+    <img
+      src="./img/time.png"
+      width="128"
+      height="128"
+      data-src="./img/get.png"
+    />
   </body>
   <script>
+    // 数据双向绑定
     const txt = document.getElementById("text");
     const sp = document.getElementById("sp");
     obj = {};
@@ -53,6 +147,7 @@
     txt.addEventListener("keyup", function (event) {
       obj.msg = event.target.value;
     });
+    // 画布
     (function draw() {
       var canvas = document.getElementById("canvas");
       if (canvas.getContext) {
@@ -85,7 +180,30 @@
         ctx.stroke();
       }
     })();
-
-    console.log(URL.createObjectURL());
+    // ...页面内容在上面...
+    function isVisible(elem) {
+      let coords = elem.getBoundingClientRect();
+      let windowHeight = document.documentElement.clientHeight;
+      // 顶部元素边缘可见吗？
+      let topVisible = coords.top > 0 && coords.top < windowHeight;
+      // 底部元素边缘可见吗？
+      let bottomVisible = coords.bottom < windowHeight && coords.bottom > 0;
+      return topVisible || bottomVisible;
+    }
+    function showVisible() {
+      for (let img of document.querySelectorAll("img")) {
+        let realSrc = img.dataset.src;
+        if (!realSrc) continue;
+        if (isVisible(img)) {
+          setTimeout(() => {
+            img.src = realSrc;
+          }, 1000);
+        } else {
+          img.src = "./img/time.png";
+        }
+      }
+    }
+    showVisible();
+    window.onscroll = showVisible;
   </script>
 </html>
