@@ -100,3 +100,8 @@ var StringPrinter = /** @class */ (function (_super) {
 }(PrinterClass));
 var wtf = new StringPrinter();
 wtf.doPrint();
+function loggingIdetity(arg) {
+    console.log(arg.length, "什么");
+    return arg;
+}
+loggingIdetity([1, 2, 3]);

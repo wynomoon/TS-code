@@ -75,3 +75,9 @@ class StringPrinter extends PrinterClass {
 }
 var wtf = new StringPrinter();
 wtf.doPrint();
+/* 泛型 */
+function loggingIdetity<T>(arg: T[]): T[] {
+  console.log(arg.length, "什么");
+  return arg;
+}
+loggingIdetity([1, 2, 3]);
