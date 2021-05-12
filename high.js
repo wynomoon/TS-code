@@ -1,27 +1,27 @@
 //新建promise
-function now() {
-  console.log("55");
-}
-function myAsyn() {
-  return new Promise(() => {
-    console.log("2");
-  });
-}
-myAsyn().then(now());
+// function now() {
+//   console.log("55");
+// }
+// function myAsyn() {
+//   return new Promise(() => {
+//     console.log("2");
+//   });
+// }
+// myAsyn().then(now());
 
-// async返回promise
-async function hello() {
-  return "Hello";
-}
-hello().then(console.log);
-hello().then((value) => console.log(value));
-//await
-async function helloWorld() {
-  let greeting;
-  return (greeting = "helloWorld");
-}
+// // async返回promise
+// async function hello() {
+//   return "Hello";
+// }
+// hello().then(console.log);
+// hello().then((value) => console.log(value));
+// //await
+// async function helloWorld() {
+//   let greeting;
+//   return (greeting = "helloWorld");
+// }
 
-helloWorld().then(console.log);
+// helloWorld().then(console.log);
 
 // const promise = new Promise(function(resolve, reject) {
 //   resolve('ok');
@@ -62,3 +62,22 @@ const myMap3 = new Map([
 ]);
 console.log(myMap3.entries());
 console.log("12345" instanceof Object);
+let str =
+  /^([A-Za-z0-9_\-.\u4E00-\u9FA5])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,8})$/;
+console.log(str.test("1-_.@qq.com"), "正则");
+let arr = [2, 4, 6, 8, 10];
+let deoubled = arr.map((num, index) => {
+  return (arr[index] = num * 2);
+});
+console.log(deoubled);
+console.log(arr);
+var s = "hello";
+for (var i = 0; i < s.length; i++) {
+  console.log(s[i]);
+  console.log(i);
+}
+console.log(i); // 5
+var obj1 = { foo: "bar", x: 42 };
+var obj2 = { foo: "xxx", y: 13 };
+var mergedObj = { ...obj1, ...obj2 };
+console.log(mergedObj);

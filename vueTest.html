@@ -76,9 +76,37 @@
         -webkit-filter: sepia(100%) invert(100%); /* Chrome, Safari, Opera */
         filter: sepia(100%) invert(100%);
       }
+      .textUl {
+        width: 130px;
+        padding: 40px;
+      }
+
+      li {
+        list-style: none;
+        word-break: break-all;
+        word-wrap: break-word;
+      }
+      li::before {
+        display: block;
+        content: "";
+        position: relative;
+        left: -12px;
+        bottom: -15px;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: rgba(197, 20, 20, 0.5);
+      }
     </style>
   </head>
   <body>
+    <div class="textUl">
+      <ul>
+        <li>ffffffffffsafffffffffafssssadfwasss</li>
+        <li>ffffff55555556666666666asss</li>
+        <li>ffffffffffafssssadfwasss</li>
+      </ul>
+    </div>
     <!-- 数据双向绑定 -->
     <input type="text" id="text" />
     <div id="sp"></div>
